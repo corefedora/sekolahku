@@ -1,16 +1,16 @@
 <?php
 
-class Welcome extends Controller {
+class Welcome extends CI_Controller {
 
-	function Welcome()
-	{
-		parent::Controller();	
-	}
-	
-	function index()
-	{
-		$this->load->view('welcome_message');
-	}
+    function __construct() {
+        parent::__construct();
+    }
+
+    function index() {
+
+        $this->load->view('template');
+    }
+
 }
 
 /* End of file welcome.php */
