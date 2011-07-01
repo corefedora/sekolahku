@@ -24,17 +24,23 @@ class Users extends CI_Controller {
             $password = $this->input->post('password');
 
             $login_data = $this->Users_model->cek_user_login($username, $password);
-
+			if($login_data){
             $session_data = array(
                 'user_id' => $login_data['id'],
                 'username' => $login_data['username'],
                 'type' => $login_data['type'],
                 'is_login' => TRUE
             );
+			
 
             $this->session->set_userdata($session_data);
 
             redirect('users/dashboard');
+			
+			}else{
+				$this->session->set_flashdata('message','Login Gagal, Kombinasi username dan password salah.');
+				redirect('users/login');
+			}
         }
         $this->load->view('users/login');
     }
